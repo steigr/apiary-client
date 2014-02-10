@@ -23,5 +23,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "webmock"
   gem.add_development_dependency "yard"
-
+  gem.add_development_dependency "rubocop"
 end

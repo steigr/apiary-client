@@ -10,7 +10,7 @@ describe Apiary::Command::Fetch do
 
   it 'pass command only with api_name' do
     opts = {
-        :api_name => 'test_api'
+        api_name: 'test_api'
     }
     command = Apiary::Command::Fetch.new(opts)
     expect { command.fetch_from_apiary }.to raise_error('API key must be provided through environment variable APIARY_API_KEY. Please go to https://login.apiary.io/tokens to obtain it.')
@@ -21,8 +21,8 @@ describe Apiary::Command::Fetch do
     API_NAME = 'test_api'
 
     opts = {
-        :api_name => API_NAME,
-        :api_key => '1234567890'
+        api_name: API_NAME,
+        api_key: '1234567890'
     }
     command = Apiary::Command::Fetch.new(opts)
 
@@ -81,7 +81,7 @@ A single Note object with all its details
 + Response 204
 }
 
-    stub_request(:get, "https://api.apiary.io/blueprint/get/#{API_NAME}").to_return(:status => 200, :body => BODY_EXAMPLE, :headers => { 'Content-Type' => 'text/plain' })
+    stub_request(:get, "https://api.apiary.io/blueprint/get/#{API_NAME}").to_return(status: 200, body: BODY_EXAMPLE, headers: { 'Content-Type' => 'text/plain' })
     command.fetch_from_apiary.should eq(BLUEPRINT_EXAMPLE)
   end
 end

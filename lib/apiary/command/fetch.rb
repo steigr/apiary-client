@@ -1,4 +1,3 @@
-# encoding: utf-8
 require 'rest_client'
 require 'rack'
 require 'ostruct'
@@ -8,21 +7,20 @@ module Apiary
   module Command
     # Retrieve blueprint from apiary
     class Fetch
-
       attr_reader :options
 
       # TODO: use OpenStruct to store @options
       def initialize(opts)
         @options = OpenStruct.new(opts)
-        @options.path         ||= "apiary.apib"
-        @options.api_host     ||= "api.apiary.io"
+        @options.path         ||= 'apiary.apib'
+        @options.api_host     ||= 'api.apiary.io'
         @options.port         ||= 8080
         @options.api_name     ||= false
         @options.api_key      ||= ENV['APIARY_API_KEY']
         @options.headers      ||= {
-          :accept => "text/html",
-          :content_type => "text/plain",
-          :authentication => "Token #{@options.api_key}"
+          accept: 'text/html',
+          content_type: 'text/plain',
+          authentication: "Token #{@options.api_key}"
         }
       end
 
@@ -35,18 +33,18 @@ module Apiary
 
       def fetch_from_apiary
         unless @options.api_name
-          abort "Please provide an api-name option (subdomain part from your http://docs.<api-name>.apiary.io/)"
+          abort 'Please provide an api-name option (subdomain part from your http://docs.<api-name>.apiary.io/)'
         end
 
         unless @options.api_key
-          abort "API key must be provided through environment variable APIARY_API_KEY. Please go to https://login.apiary.io/tokens to obtain it."
+          abort 'API key must be provided through environment variable APIARY_API_KEY. Please go to https://login.apiary.io/tokens to obtain it.'
         end
 
-        response = self.query_apiary(@options.api_host, @options.path)
+        response = query_apiary(@options.api_host, @options.path)
         unless @options.output
-          response["code"]
+          response['code']
         else
-          write_generated_path(response["code"], @options.output)
+          write_generated_path(response['code'], @options.output)
         end
       end
 
@@ -70,10 +68,10 @@ module Apiary
       end
 
       private
-        def api_name
-          "-a"
-        end
 
+      def api_name
+        '-a'
+      end
     end
   end
 end

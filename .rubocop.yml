@@ -1,0 +1,11 @@
+inherit_from: rubocop-todo.yml
+
+AllCops:
+  Includes:
+    - Rakefile
+    - config.ru
+LineLength:
+  Max: 1200
+
+MethodLength:
+  Max: 37

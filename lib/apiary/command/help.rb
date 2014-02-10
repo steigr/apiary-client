@@ -1,9 +1,7 @@
-# encoding: utf-8
 module Apiary
   module Command
     # Display help
     class Help
-
       def self.execute(options)
         banner
         commands
@@ -31,7 +29,6 @@ module Apiary
         puts "\tversion                                     Show version"
         puts "\n"
       end
-
     end
   end
 end

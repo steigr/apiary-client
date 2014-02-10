@@ -1,8 +1,7 @@
-# encoding: utf-8
 require 'optparse'
 module Apiary
+  # CLI
   class CLI
-
     attr_reader :command
 
     def initialize(args)
@@ -20,31 +19,31 @@ module Apiary
       @command = nil
       options = {}
       options_parser = OptionParser.new do |opts|
-        opts.on("--path [PATH]") do |path|
+        opts.on('--path [PATH]') do |path|
           options[:path] = path
         end
 
-        opts.on("--output [PATH]") do |path|
+        opts.on('--output [PATH]') do |path|
           options[:output]  = path
         end
 
-        opts.on("--api_host API_HOST") do |api_host|
+        opts.on('--api_host API_HOST') do |api_host|
           options[:api_host] = api_host
         end
 
-        opts.on("--api-name API_HOST") do |api_name|
+        opts.on('--api-name API_HOST') do |api_name|
           options[:api_name] = api_name
         end
 
-        opts.on("--browser BROWSER") do |browser|
+        opts.on('--browser BROWSER') do |browser|
           options[:browser] = browser
         end
 
-        opts.on("--server") do
+        opts.on('--server') do
           options[:server] = true
         end
 
-        opts.on("--port [PORT]") do |port|
+        opts.on('--port [PORT]') do |port|
           options[:port] = port
         end
 
@@ -52,7 +51,7 @@ module Apiary
           @command = :version
         end
 
-        opts.on( '-h', '--help') do
+        opts.on('-h', '--help') do
           @command = :help
         end
       end
@@ -65,6 +64,5 @@ module Apiary
       puts Apiary::Command::Help.banner
       exit 1
     end
-
   end
 end

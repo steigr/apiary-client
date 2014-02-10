@@ -1,4 +1,3 @@
-# encoding: utf-8
 require 'rest_client'
 require 'rack'
 require 'ostruct'
@@ -7,11 +6,10 @@ module Apiary
   module Command
     # Display preview of local blueprint file
     class Preview
-
       BROWSERS = {
-        :safari => "Safari",
-        :chrome => "Google Chrome",
-        :firefox => "Firefox"
+        safari: 'Safari',
+        chrome: 'Google Chrome',
+        firefox: 'Firefox'
       }
 
       attr_reader :options
@@ -19,9 +17,9 @@ module Apiary
       # TODO: use OpenStruct to store @options
       def initialize(opts)
         @options = OpenStruct.new(opts)
-        @options.path         ||= "apiary.apib"
-        @options.api_host     ||= "api.apiary.io"
-        @options.headers      ||= {:accept => "text/html", :content_type => "text/plain"}
+        @options.path         ||= 'apiary.apib'
+        @options.api_host     ||= 'api.apiary.io'
+        @options.headers      ||= { accept: 'text/html', content_type: 'text/plain' }
         @options.port         ||= 8080
       end
 
@@ -53,16 +51,16 @@ module Apiary
 
       def rack_app(&block)
         Rack::Builder.new do
-          run lambda { |env| [200, Hash.new, [block.call]] }
+          run -> (env) { [200, Hash.new, [block.call]] }
         end
       end
 
       def run_server
-        app = self.rack_app do
-          self.query_apiary(@options.api_host, @options.path)
+        app = rack_app do
+          query_apiary(@options.api_host, @options.path)
         end
 
-        Rack::Server.start(:Port => @options.port, :app => app)
+        Rack::Server.start(Port: @options.port, app: app)
       end
 
       def preview_path(path)
@@ -88,16 +86,17 @@ module Apiary
       end
 
       def generate_static(path)
-        File.open(preview_path(path), "w") do |file|
+        File.open(preview_path(path), 'w') do |file|
           file.write(query_apiary(@options.api_host, path))
           @options.output ? write_generated_path(file.path, @options.output) : open_generated_page(file.path)
         end
       end
 
       private
-        def browser_options
-          "-a #{BROWSERS[@options.browser.to_sym]}" if @options.browser
-        end
+
+      def browser_options
+        "-a #{BROWSERS[@options.browser.to_sym]}" if @options.browser
+      end
     end
   end
 end

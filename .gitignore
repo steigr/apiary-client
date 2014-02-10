@@ -2,14 +2,21 @@ Gemfile.lock
 .bundle
 .rvmrc
 .tags
-.yardoc
 .rbenv-version
 *.gem
-/coverage
 /pkg
-/rdoc
 /vendor
-!/doc
 /.idea
 /nbproject/
 
+
+# rcov generated
+coverage
+coverage.data
+
+# rdoc generated
+rdoc
+
+# yard generated
+doc
+.yardoc
