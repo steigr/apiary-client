@@ -23,11 +23,11 @@ module Apiary
           :accept => "text/html",
           :content_type => "text/plain",
           :authentication => "Token #{@options.api_key}"
-        }        
+        }
       end
 
       def self.execute(args)
-        response = new(args).fetch_from_apiary        
+        response = new(args).fetch_from_apiary
         if response.instance_of? String
           puts response
         end
@@ -56,10 +56,10 @@ module Apiary
 
       def query_apiary(host, path)
         url  = "https://#{host}/blueprint/get/#{@options.api_name}"
-        response = RestClient.get url, @options.headers        
+        response = RestClient.get url, @options.headers
         unless (200..299).include? response.code
           abort "Request failed with code #{response.code}"
-        end        
+        end
         JSON.parse response.body
       end
 
