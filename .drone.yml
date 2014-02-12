@@ -1,0 +1,7 @@
+image: ruby:2.0.0
+script:
+  - rake
+notify:
+  email:
+    recipients:
+      - ladislav.prskavec@gmail.com
