@@ -31,25 +31,55 @@ machine, either using static files or using a standalone web server...
 
     $ apiary help
 
-    Usage: apiary command [options]
-    Try 'apiary help' for more information.
+    Commands:
+      apiary fetch --api-name=API_NAME    # Fetch apiary.apib from API_NAME.apiary.io
+      apiary help [COMMAND]               # Describe available commands or one specific command
+      apiary preview                      # Show API documentation in default browser
+      apiary publish --api-name=API_NAME  # Publish apiary.apib on docs.API_NAME.apiary.io
+      apiary version                      # Show version
 
-    Currently available apiary commands are:
+    $ apiary help fetch
+    
+    Usage:
+      apiary fetch --api-name=API_NAME
 
-      preview                                     Show API documentation in default browser
-      preview --browser [chrome|safari|firefox]   Show API documentation in specified browser
-      preview --output [FILE]                     Write generated HTML into specified file
-      preview --path [PATH]                       Specify path to blueprint file
-      preview --api_host [HOST]                   Specify apiary host
-      preview --server                            Start standalone web server on port 8080
-      preview --server --port [PORT]              Start standalone web server on specified port
-      publish --api-name [API_NAME]               Publish apiary.apib on docs.API_NAME.apiary.io
-      publish --api-name [API_NAME] \
-              --message [COMMIT_MESSAGE]          Publish with custom commit message
-      fetch   --api-name [API_NAME]               Fetch apiary.apib from API_NAME.apiary.io
-              --output [FILE]                     Write apiary.apib into specified file
-      help                                        Show this help
-      version                                     Show version
+    Options:
+      --api-name=API_NAME
+      [--api-host=HOST]    # Specify apiary host
+      [--output=FILE]      # Write apiary.apib into specified file
+
+    Fetch apiary.apib from API_NAME.apiary.io    
+    
+    $ apiary help publish
+
+    Usage:
+      apiary publish --api-name=API_NAME
+
+    Options:
+      [--message=COMMIT_MESSAGE]  # Publish with custom commit message
+      [--path=PATH]               # Specify path to blueprint file
+                                  # Default: apiary.apib
+      [--api-host=HOST]           # Specify apiary host
+      --api-name=API_NAME
+
+    Publish apiary.apib on docs.API_NAME.apiary.io
+    
+    $ apiary help preview
+
+    Usage:
+      apiary preview
+
+    Options:
+      [--browser=chrome|safari|firefox]  # Show API documentation in specified browser
+                                         # Possible values: chrome, safari, firefox
+      [--output=FILE]                    # Write generated HTML into specified file
+      [--path=PATH]                      # Specify path to blueprint file
+                                         # Default: apiary.apib
+      [--api-host=HOST]                  # Specify apiary host
+      [--server], [--no-server]          # Start standalone web server on port 8080
+      [--port=PORT]                      # Set port for --server option
+
+    Show API documentation in default browser
 
 ## Copyright
 
